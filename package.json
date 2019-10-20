@@ -45,11 +45,12 @@
     "eslint-plugin-ember": "^7.1.0",
     "eslint-plugin-node": "^10.0.0",
     "loader.js": "^4.7.0",
-    "qunit-dom": "^0.9.0",
-    "xeogl": "^0.9.0"
+    "qunit-dom": "^0.9.0"
   },
   "engines": {
     "node": "8.* || >= 10.*"
   },
-  "dependencies": {}
+  "dependencies": {
+    "xeogl": "^0.9.0"
+  }
 }
