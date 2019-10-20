@@ -1,0 +1,116 @@
+<div id="container">
+  <script>
+    var scene = xeogl.getDefaultScene();
+
+    xeogl.loadOBJGeometry( scene, '/3d/residential_008.obj', function ( cityGeometry ) {
+      // Scene lighting
+      new xeogl.AmbientLight( {
+        color: [ 1, 0.3, 0.3 ],
+        intensity: 1,
+      } );
+
+      new xeogl.DirLight( {
+        dir: [ 0.5, -1, 0.5 ],     // Direction the light is shining in
+        color: [ 0.5, 0.3, 0.0 ],
+        intensity: 0.4,
+        space: 'view',      // Other option is 'world', for World-space
+        shadow: new xeogl.Shadow( {
+          resolution: [ 1000, 1000 ],
+          intensity: 1,
+          sampling: 'stratified' // 'stratified' | 'poisson' | 'basic'
+        } )
+      } );
+
+      var focus_material = new xeogl.PhongMaterial( {
+        diffuse: [ 0.5, 0.5, 0.5 ],
+        specular: [ 1, 1, 1 ],
+        pointSize: 500,
+        alpha: 1,
+        alphaMode: 'blend',
+        backfaces: true
+      } );
+
+      // City model
+      var city = new xeogl.Mesh( {
+        geometry: cityGeometry,
+        material: focus_material,
+        scale: [ 1, 1, 1 ],
+        position: [ 0, 0, 0 ],
+        ghosted: false,
+        ghostMaterial: new xeogl.EmphasisMaterial( {
+          edges: true,
+          edgeAlpha: 0.7,
+          edgeColor: [ 0, 0, 0 ],
+          edgeWidth: 1.5,
+          vertices: false,
+          vertexAlpha: 1.0,
+          vertexColor: [ 0.6, 1.0, 0.6 ],
+          vertexSize: 8,
+          fill: true,
+          fillColor: [ 1, 1, 1 ],
+          fillAlpha: 1
+        } )
+      } );
+
+      // Reflected city model
+      var reflectedCity = new xeogl.Mesh( {
+        geometry: cityGeometry,
+        material: focus_material,
+        collidable: false,
+        pickable: false,
+        scale: [ 1, -1, 1 ],
+        position: [ 0, 0, 0 ],
+        edges: true
+      } );
+
+      // "Mirror"
+      var ground = new xeogl.Mesh( {
+        geometry: new xeogl.PlaneGeometry( {
+          xSize: 5000,
+          zSize: 5000
+        } ),
+        material: new xeogl.PhongMaterial( {
+          diffuse: [ 0, 0, 0 ],
+          specular: [ .3, .3, .3 ],
+          alpha: 0.8,
+          alphaMode: 'blend',
+          backfaces: false
+        } ),
+        collidable: false,
+        pickable: false,
+        position: [ 0, 0, 0 ]
+      } );
+
+      // Initial camera pose
+      var camera = scene.camera;
+      camera.look = [ 0, 300, 0 ];
+      camera.eye = [ 0, 1000, -1000 ];
+
+      // Orbit the camera
+      scene.on( 'tick', function () {
+        camera.orbitYaw( -0.2 );
+        //var focus_alpha = focus_material.alpha;
+        //focus_material.alpha += focus_alpha < 0.9 ? 0.01 : 0;
+      } );
+
+      // Camera interaction
+      var cameraControl = new xeogl.CameraControl();
+    } );
+  </script>
+
+  <div id="header">
+    {{#link-to "index"}}
+    <h1>Virtual Architect UI Demo</h1>
+    {{/link-to}}
+  </div>
+
+  <div class="links">
+    {{#link-to "about" class="menu-about"}}
+    About
+    {{/link-to}}
+  </div>
+
+  <div class="content">
+    {{outlet}}
+  </div>
+</div>

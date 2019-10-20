@@ -1,0 +1,24 @@
+body {
+  color: #ffffff;
+  font-family: monospace;
+}
+
+a,
+a:hover,
+a:visited {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+#ember174 #header {
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#ember174 .content {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
