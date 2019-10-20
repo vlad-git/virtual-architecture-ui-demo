@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'virtual-architect-ui-demo',
+    modulePrefix: 'virtual-architecture-ui-demo',
     environment,
     rootURL: '/',
     locationType: 'auto',
