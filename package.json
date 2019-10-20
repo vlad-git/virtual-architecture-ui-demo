@@ -1,11 +1,11 @@
 {
-  "name": "virtual-ui-demo",
+  "name": "virtual-architect-ui-demo",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for virtual-ui-demo goes here",
+  "description": "An interactive virtual architecture UI.",
   "repository": "",
   "license": "MIT",
-  "author": "",
+  "author": "Vlad Turda",
   "directories": {
     "doc": "doc",
     "test": "tests"
