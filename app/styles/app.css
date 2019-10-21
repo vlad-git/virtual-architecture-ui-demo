@@ -1,13 +1,19 @@
 body {
-  color: #000000;
+  padding: 0;
+  margin: 0;
+  color: #ffffff;
   font-family: sans-serif;
 }
 
 a,
 a:hover,
 a:visited {
-  color: #000000;
+  color: #ffffff;
   text-decoration: none;
+}
+
+#ember174 #container {
+  position: relative;
 }
 
 #ember174 #header {
@@ -31,4 +37,24 @@ a:visited {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
+}
+
+#ember174 .content a,
+#ember174 .content a:hover,
+#ember174 .content a:visited {
+  color: #165072;
+  text-decoration: none;
+}
+
+#ember177 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#VisualizerCanvas {
+  height: 100%;
+  width: 100%;
 }
