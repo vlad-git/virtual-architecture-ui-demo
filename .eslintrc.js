@@ -15,6 +15,9 @@ module.exports = {
   env: {
     browser: true
   },
+  globals: {
+    'xeogl': 'read-only'
+  },
   rules: {
     'ember/no-jquery': 'error'
   },
