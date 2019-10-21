@@ -1,20 +1,30 @@
 body {
-  color: #ffffff;
-  font-family: monospace;
+  color: #000000;
+  font-family: sans-serif;
 }
 
 a,
 a:hover,
 a:visited {
-  color: #ffffff;
+  color: #000000;
   text-decoration: none;
 }
 
 #ember174 #header {
-  text-align: center;
-  width: 100%;
-  max-width: 600px;
+  text-align: right;
   margin: 0 auto;
+  padding: 0 1em;
+}
+
+#ember174 #header h1 {
+  font-variant: small-caps;
+}
+
+#ember174 .links {
+  font-variant: all-petite-caps;
+  text-align: right;
+  margin: 0 auto;
+  padding: 0 1em;
 }
 
 #ember174 .content {
