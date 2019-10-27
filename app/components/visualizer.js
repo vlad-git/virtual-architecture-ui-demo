@@ -1,12 +1,34 @@
 import Component from '@ember/component';
 
 export default Component.extend({
+
   init() {
     this._super( ...arguments );
+
+    this.set( 'cam_pos', {
+      index: {
+        look: [ 0, 200, 0 ],
+        eye: [ 1000, 100, -1000 ],
+        up: [ 0, 1, 0 ],
+        duration: [ 0.5 ]
+        },
+      about: {
+        look: [ 0, 200, 0 ],
+        eye: [ 1000, 600, -1000 ],
+        up: [ 0, 1, 0 ],
+        duration: [ 0.5 ]
+        },
+      features: {
+        look: [ 0, 200, 0 ],
+        eye: [ 1000, 1000, -1000 ],
+        up: [ 0, 1, 0 ],
+        duration: [ 0.5 ]
+        },
+     } ); 
   },
 
   didInsertElement() {
-    this._super( ...arguments );
+    let route = this.route != 'undefined' ? this.route : 'index';
 
     this.set( 'scene', new xeogl.Scene( {
       canvas: 'VisualizerCanvas' } )
@@ -18,7 +40,16 @@ export default Component.extend({
     this.camera.look = [ 0, 200, 0 ];
     this.camera.eye = [ 1000, 600, -1000 ];
 
+    this.set( 'cameraControl', new xeogl.CameraControl() );
+    this.set( 'cameraFlight', new xeogl.CameraFlightAnimation( {
+        fit: true,
+        fitFOV: 45,
+        duration: 0.5
+      }, function() {} ) );
+
     this.scene.clearLights();
+
+    this.cameraFlight.flyTo(this.cam_pos[route]);
     
     this.set( 'lights', { 
       ambientLight: new xeogl.AmbientLight( {
@@ -82,24 +113,13 @@ export default Component.extend({
       }
     } );
 
-    this.objs.building.on( 'loaded', function() {
-      var cameraFlight = new xeogl.CameraFlightAnimation( {
-        fit: true,
-        fitFOV: 45,
-        duration: 0.5
-      }, function() {} );
-      
-      cameraFlight.flyTo(this);
-    });
-
-
-      
-    this.set( 'cameraControl', new xeogl.CameraControl() );
+    this.objs.building.on( 'loaded', function() {} );
 
     this.set( 'animator', 'orbit' );
 
     this.scene.on( 'tick', this.animate() );
 
+    this._super( ...arguments );
   },
   
   animate: function() {
@@ -137,5 +157,12 @@ export default Component.extend({
 
       cameraFlight.flyTo(this.objs.building);
     }
+  },
+
+  didUpdateAttrs() {
+    let route = this.route != 'undefined' ? this.route : 'index';
+    //console.log(this.cam_pos[route]);
+    this.cameraFlight.flyTo(this.cam_pos[route]);
   }
+
 });

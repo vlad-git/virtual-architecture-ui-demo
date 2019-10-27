@@ -3,11 +3,11 @@ import Component from '@ember/component';
 export default Component.extend({
   actions: {
     aboutVisualize() {
-      this.parentView.send('flyOut');
+      //this.parentView.send('flyOut');
     },
 
     featureVisualize() {
-      this.parentView.send('flyIn');
+      //this.parentView.send('flyIn');
     }
   }
 });

@@ -1,15 +1,16 @@
-  <div id="container">
+<div id="container">
 
-    <header id="header">
-      {{#link-to "index"}}
-        <h1>architectural UI</h1>
-      {{/link-to}}
-    </header>
+  <header id="header">
+    {{#link-to "index"}}
+      <h1>architectural UI</h1>
+    {{/link-to}}
+  </header>
 
-    <Visualizer @navigation={{component "navigation"}}>
-    </Visualizer>
+  <Navigation />
+  
+  <Visualizer @route={{this.currentPath}} />
 
-    <div class="content">
-      {{outlet}}
-    </div>
+  <div class="content">
+    {{outlet}}
   </div>
+</div>
