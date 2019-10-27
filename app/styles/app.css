@@ -1,60 +1,53 @@
 body {
   padding: 0;
   margin: 0;
-  color: #ffffff;
+  color: #000000;
   font-family: sans-serif;
 }
 
 a,
 a:hover,
 a:visited {
-  color: #ffffff;
+  color: #000000;
   text-decoration: none;
 }
 
-#ember174 #container {
-  position: relative;
-}
-
-#ember174 #header {
+#container #header {
   text-align: right;
   margin: 0 auto;
   padding: 0 1em;
 }
 
-#ember174 #header h1 {
+#container #header h1 {
   font-variant: small-caps;
 }
 
-#ember174 .links {
-  font-variant: all-petite-caps;
+#container .links {
+  font-variant: small-caps;
   text-align: right;
   margin: 0 auto;
   padding: 0 1em;
 }
 
-#ember174 .content {
+#container .content {
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
 }
 
-#ember174 .content a,
-#ember174 .content a:hover,
-#ember174 .content a:visited {
+#container .content a,
+#container .content a:hover,
+#container .content a:visited {
   color: #165072;
   text-decoration: none;
 }
 
-#ember177 {
+#VisualizerCanvas {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: -9999;
 }
 
-#VisualizerCanvas {
-  height: 100%;
-  width: 100%;
-}

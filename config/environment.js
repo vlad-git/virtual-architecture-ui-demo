@@ -45,6 +45,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     // here you can enable a production-specific feature
+    ENV.rootURL = '/virtual-architecture-ui-demo/';
   }
 
   return ENV;

@@ -1,20 +1,15 @@
-<Visualizer />
+  <div id="container">
 
-<div id="container">
+    <header id="header">
+      {{#link-to "index"}}
+        <h1>architectural UI</h1>
+      {{/link-to}}
+    </header>
 
-  <header id="header">
-    {{#link-to "index"}}
-      <h1>architectural UI</h1>
-    {{/link-to}}
-  </header>
+    <Visualizer @navigation={{component "navigation"}}>
+    </Visualizer>
 
-  <nav class="links">
-    {{#link-to "about" class="menu-about"}}
-      <strong>About</strong>
-    {{/link-to}}
-  </nav>
-
-  <div class="content">
-    {{outlet}}
+    <div class="content">
+      {{outlet}}
+    </div>
   </div>
-</div>
