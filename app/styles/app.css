@@ -29,11 +29,16 @@ a:visited {
   padding: 0 1em;
 }
 
+#container .links a {
+  float: right;
+  clear: right;
+}
+
 #container .content {
-  width: 100%;
   max-width: 600px;
   margin: 0 auto;
   padding: 0 1em;
+  clear: both;
 }
 
 #container .content a,
@@ -52,3 +57,23 @@ a:visited {
   z-index: -9999;
 }
 
+.xeogl-annotation-pin {
+  position: absolute;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5em;
+  text-align: center;
+  background-color: rgba(255, 0, 0, 0.7);
+  color: rgba( 255, 255, 255, 1);
+  font-weight: bold;
+}
+
+.xeogl-annotation-label {
+  position: absolute;
+  padding: 1em;
+  background-color: rgba( 255, 255, 255, 0.7 );
+}
+
+.xeogl-annotation-label .xeogl-annotation-title {
+  font-weight: bold;
+}

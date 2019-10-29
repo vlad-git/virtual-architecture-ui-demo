@@ -21,7 +21,11 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('node_modules/xeogl/build/xeogl.js');
+
   app.import('node_modules/xeogl/examples/js/models/OBJModel.js');
+
+  app.import('node_modules/xeogl/examples/js/annotations/pin.js');
+  app.import('node_modules/xeogl/examples/js/annotations/annotation.js');
 
   return app.toTree();
 };
