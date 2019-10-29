@@ -8,19 +8,19 @@ export default Component.extend({
     this.set( 'cam_pos', {
       index: {
         look: [ 0, 200, 0 ],
-        eye: [ 1000, 100, -1000 ],
+        eye: [ 300, 100, -300 ],
         up: [ 0, 1, 0 ],
         duration: [ 0.5 ]
         },
       about: {
         look: [ 0, 200, 0 ],
-        eye: [ 1000, 600, -1000 ],
+        eye: [ 1500, 2000, -1000 ],
         up: [ 0, 1, 0 ],
         duration: [ 0.5 ]
         },
       features: {
         look: [ 0, 200, 0 ],
-        eye: [ 1000, 1000, -1000 ],
+        eye: [ 500, 500, -500 ],
         up: [ 0, 1, 0 ],
         duration: [ 0.5 ]
         },
@@ -37,9 +37,6 @@ export default Component.extend({
     xeogl.setDefaultScene( this.scene );
 
     this.set( 'camera', this.scene.camera );
-    this.camera.look = [ 0, 200, 0 ];
-    this.camera.eye = [ 1000, 600, -1000 ];
-
     this.set( 'cameraControl', new xeogl.CameraControl() );
     this.set( 'cameraFlight', new xeogl.CameraFlightAnimation( {
         fit: true,
@@ -48,8 +45,6 @@ export default Component.extend({
       }, function() {} ) );
 
     this.scene.clearLights();
-
-    this.cameraFlight.flyTo(this.cam_pos[route]);
     
     this.set( 'lights', { 
       ambientLight: new xeogl.AmbientLight( {
@@ -58,7 +53,7 @@ export default Component.extend({
       dirLightA: new xeogl.DirLight( {
         dir: [ 0.4, -1.0, -0.4 ],
         color: [ 1.0, 0.9, 0.8 ],
-        intensity: 0.8,
+        intensity: 1.9,
         space: 'world' } ),
       dirLightB: new xeogl.DirLight( {
         dir: [ -0.4, -0.8, 0.4 ],
@@ -107,14 +102,18 @@ export default Component.extend({
 
     this.objs.city.on( 'loaded', function() {
       for(var m in this.meshes) {
-        var mesh = this.meshes[m];
+        let mesh = this.meshes[m];
         mesh.pickable = false;
         mesh.opacity = 0.8;
       }
     } );
 
-    this.objs.building.on( 'loaded', function() {} );
+    this.objs.building.on( 'loaded', function() { } );
 
+    this.camera.look = [ 0, 200, 0 ];
+    this.camera.eye = [ 1000, 600, -1000 ];
+    this.cameraFlight.flyTo(this.cam_pos[route]);
+    
     this.set( 'animator', 'orbit' );
 
     this.scene.on( 'tick', this.animate() );
@@ -123,46 +122,51 @@ export default Component.extend({
   },
   
   animate: function() {
-    var animator = this.animator ? this.animator : 'default';
+    let animator = this.animator ? this.animator : 'default';
     
     var animators = {
       orbit: function() {
         this.camera.orbitYaw( -0.2 );
       },
-      default: function() {
 
-      }
+      default: function() { }
     }; 
 
-    return animators[animator];
+    return animators[ animator ];
   },
 
   actions: {
     flyOut() {
-      var cameraFlight = new xeogl.CameraFlightAnimation( {
+      let cameraFlight = new xeogl.CameraFlightAnimation( {
         fit: true,
         fitFOV: 45,
         duration: 0.5
       }, function() {} );
       
-      cameraFlight.flyTo(this.objs.city);
+      cameraFlight.flyTo( this.objs.city );
     },
 
     flyIn() {
-      var cameraFlight = new xeogl.CameraFlightAnimation( {
+      let cameraFlight = new xeogl.CameraFlightAnimation( {
         fit: true,
         fitFOV: 45,
         duration: 0.5
       }, function() {} );
 
-      cameraFlight.flyTo(this.objs.building);
+      cameraFlight.flyTo( this.objs.building );
     }
   },
 
   didUpdateAttrs() {
     let route = this.route != 'undefined' ? this.route : 'index';
-    //console.log(this.cam_pos[route]);
-    this.cameraFlight.flyTo(this.cam_pos[route]);
+
+    let cameraFlight = new xeogl.CameraFlightAnimation( {
+        fit: true,
+        fitFOV: 45,
+        duration: 0.5
+      }, function() { } );
+
+    cameraFlight.flyTo( this.cam_pos[route] );
   }
 
 });
