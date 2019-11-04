@@ -90,24 +90,23 @@ export default Component.extend({
       building: new xeogl.OBJModel( {
         id: 'building',
         src: 'obj-models/apartment_building_1.obj',
-        pos: [ 0, 0, 0 ],
-        scale: [ 0.5, 0.5, 0.5 ],
-        pickable: false
+        position: [ 0, 0, 0 ],
+        scale: [ 0.5, 0.5, 0.5 ]
       } ),
 
       city: new xeogl.OBJModel( {
         id: 'city',
         src: 'obj-models/city.obj',
-        pos: [ 0, 0, 0 ],
-        scale: [ 0.5, 0.5, 0.5 ],
-        pickable: false
+        position: [ 0, 100, 0 ],
+        scale: [ 0.6, 0.6, 0.6 ]
       } ),
     } );
 
     this.objs.building.on( 'loaded', function() {
-      for(var m in this.meshes) {
-        let mesh = this.meshes[m];
-        mesh.pickable = false;
+      console.log(this.objs.building);
+      for(var m in this.objs.building.meshes) {
+        let mesh = this.objs.building.meshes[m];
+        mesh.pickable = true;
       }
 
       this.set( 'annotations', {
@@ -136,8 +135,10 @@ export default Component.extend({
     }.bind(this) );
 
     this.objs.city.on( 'loaded', function() {
-      for(var m in this.meshes) {
-        let mesh = this.meshes[m];
+      console.log(this.objs.city);
+      for(var m in this.objs.city.meshes) {
+        let mesh = this.objs.city.meshes[m];
+        console.log(mesh);
         mesh.pickable = false;
         mesh.ghosted = true;
         mesh.ghostMaterial.edges = true;
@@ -148,7 +149,7 @@ export default Component.extend({
         mesh.ghostMaterial.fillColor = [0, 0, 0];
         mesh.ghostMaterial.fillAlpha = 0.1;
       }
-    } );
+    }.bind(this) );
 
     this.camera.look = [ 0, 200, 0 ];
     this.camera.eye = [ 1000, 600, -1000 ];
