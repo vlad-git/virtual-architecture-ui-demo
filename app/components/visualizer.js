@@ -103,7 +103,6 @@ export default Component.extend({
     } );
 
     this.objs.building.on( 'loaded', function() {
-      console.log(this.objs.building);
       for(var m in this.objs.building.meshes) {
         let mesh = this.objs.building.meshes[m];
         mesh.pickable = true;
@@ -135,10 +134,8 @@ export default Component.extend({
     }.bind(this) );
 
     this.objs.city.on( 'loaded', function() {
-      console.log(this.objs.city);
       for(var m in this.objs.city.meshes) {
         let mesh = this.objs.city.meshes[m];
-        console.log(mesh);
         mesh.pickable = false;
         mesh.ghosted = true;
         mesh.ghostMaterial.edges = true;
